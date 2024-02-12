@@ -392,6 +392,8 @@ class Slide_Process:
         st.write(self.output_df)
         
     def data_output_process_Final(self):
+        st.write(self.output_df)
+        st.write(self.dir_path + '/OutputFiles/' + self.file[:-4] + '_Processed.csv')
         self.output_df.to_csv(self.dir_path + '/OutputFiles/' 
                               + self.file[:-4] + '_Processed.csv')  
 

@@ -20,6 +20,7 @@ class Slide_Process:
         st.markdown(':red[For the raw data files please download the "Data" folder from: https://github.com/andrewbremner3/Micro_Array_Processor]')
         st.header("Use sidebar to pick files for processing")
         # add file browser for where the files go
+        
         self.output_folder = st.text_input("Define path to output folder.")
         
         st.sidebar.header("1) Browse for files")
@@ -324,7 +325,7 @@ class Slide_Process:
         # make output file from lists into a dataframe
         output_df = pd.DataFrame(self.output_data)
         output_df = output_df.T
-        os.makedirs(self.output_folder + '/OutputFiles', exist_ok=True) 
+        # os.makedirs(self.output_folder + '/OutputFiles', exist_ok=True) 
         output_df.to_csv(self.output_folder + '/OutputFiles/' + self.file[:-4] + '_TempOutputFile.csv') 
 
         

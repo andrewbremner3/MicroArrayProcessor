@@ -106,11 +106,11 @@ class Slide_Process:
     def import_file(self):
         # Import .tif file
         # cv2.imread is the line that takes the longest time (~ 5-6 seconds)
-        im_cv2_whole = cv2.imread(self.dir_path+"/Images/"+self.file) ####
+        im_cv2_whole = cv2.imread(self.dir_path+"/RawImages/"+self.file) ####
         ############
         # Use both the cv2.imread and Image.open
         # cv2 for presenting the images to the user and Image.open for getting absolute intesities of the pixels
-        im = Image.open(self.dir_path+"/Images/"+self.file)
+        im = Image.open(self.dir_path+"/RawImages/"+self.file)
         imarray_whole = np.array(im)
         xlen = im.size[0]
         # Split image array into the 21 wells (24 but bottom row is not used)

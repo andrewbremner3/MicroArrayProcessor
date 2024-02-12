@@ -19,6 +19,9 @@ class Slide_Process:
         st.title("Slide Process Program")
         st.markdown(':red[For the raw data files please download the "Data" folder from: https://github.com/andrewbremner3/Micro_Array_Processor]')
         st.header("Use sidebar to pick files for processing")
+        # add file browser for where the files go
+        self.output_folder = self.file_selector()
+        
         st.sidebar.header("1) Browse for files")
         
         # Set the path to the data and .csv info files (Assumed Data folder and .py file are at same level)
@@ -105,6 +108,11 @@ class Slide_Process:
                     # Call to create output .csv file
                     if st.sidebar.button("Download Final Data"):
                         self.data_output_process_Final()
+    
+    def file_selector(self, folder_path='.'):
+            filenames = os.listdir(folder_path)
+            selected_filename = st.selectbox('Select a folder', filenames)
+            return os.path.join(folder_path)
 
     def import_file(self):
         # Import .tif file
@@ -320,8 +328,8 @@ class Slide_Process:
         # make output file from lists into a dataframe
         output_df = pd.DataFrame(self.output_data)
         output_df = output_df.T
-        os.makedirs(self.dir_path + '/OutputFiles', exist_ok=True) 
-        output_df.to_csv(self.dir_path + '/OutputFiles/' + self.file[:-4] + '_TempOutputFile.csv') 
+        os.makedirs(self.output_folder + '/OutputFiles', exist_ok=True) 
+        output_df.to_csv(self.output_folder + '/OutputFiles/' + self.file[:-4] + '_TempOutputFile.csv') 
 
         
     def process_data(self):
@@ -393,9 +401,7 @@ class Slide_Process:
         st.write(self.dir_path)
         
     def data_output_process_Final(self):
-        st.write(self.output_df)
-        st.write(self.dir_path)
-        self.output_df.to_csv(self.dir_path + '/OutputFiles/' 
+        self.output_df.to_csv(self.output_folder + '/OutputFiles/' 
                               + self.file[:-4] + '_Processed.csv')  
 
 # Script to run a Streamlit app that is able to process multiple slide images

@@ -18,7 +18,11 @@ class Slide_Process:
         # initialize the Streamlit asthetics with titles and headers
         st.title("Slide Process Program")
         st.markdown(':red[See the script and raw data at: https://github.com/andrewbremner3/Micro_Array_Processor]')
-        st.header("Use sidebar to pick files for processing")
+        st.subheader('Instructions for use:')
+        st.markdown('1) Select the image file to process in the sidebar dropdown, then the map and ID files.')
+        st.markdown("2) Once files are defined, click image processing button.")
+        st.markdown("3) Once finished (and all subarrays look good), click data processing button.")
+        st.markdown("4) Finally, download processed data.")
         st.sidebar.header("1) Browse for files")
         
         # Set the path to the data and .csv info files (Assumed Data folder and .py file are at same level)
@@ -103,6 +107,7 @@ class Slide_Process:
                     self.process_data()
                     self.prog_bar.progress(100)
                     # Call to create output .csv file
+                    st.sidebar.header("4) Download Data")
                     self.data_output_process_Final()
 
     def import_file(self):
@@ -391,7 +396,7 @@ class Slide_Process:
         st.write(self.output_df)
         
     def data_output_process_Final(self):
-        st.download_button(
+        st.sidebar.download_button(
             "Click to Download Final Data",
             self.output_df.to_csv(index=False).encode('utf-8'),
             str(self.file[:-4]) + '_Processed.csv',

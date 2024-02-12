@@ -103,8 +103,7 @@ class Slide_Process:
                     self.process_data()
                     self.prog_bar.progress(100)
                     # Call to create output .csv file
-                    if st.sidebar.button("Download Final Data"):
-                        self.data_output_process_Final()
+                    self.data_output_process_Final()
 
     def import_file(self):
         # Import .tif file

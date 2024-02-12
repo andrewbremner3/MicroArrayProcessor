@@ -390,10 +390,11 @@ class Slide_Process:
         self.output_df.sort_values(by=['Probe_ID'], axis=0, ascending=True, inplace=True)
         # st.write(headers)
         st.write(self.output_df)
+        st.write(self.dir_path)
         
     def data_output_process_Final(self):
         st.write(self.output_df)
-        st.write(self.dir_path + '/OutputFiles/' + self.file[:-4] + '_Processed.csv')
+        st.write(self.dir_path)
         self.output_df.to_csv(self.dir_path + '/OutputFiles/' 
                               + self.file[:-4] + '_Processed.csv')  
 

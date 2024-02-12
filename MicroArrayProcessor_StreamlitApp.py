@@ -19,10 +19,6 @@ class Slide_Process:
         st.title("Slide Process Program")
         st.markdown(':red[For the raw data files please download the "Data" folder from: https://github.com/andrewbremner3/Micro_Array_Processor]')
         st.header("Use sidebar to pick files for processing")
-        # add file browser for where the files go
-        
-        self.output_folder = st.text_input("Define path to output folder.")
-        
         st.sidebar.header("1) Browse for files")
         
         # Set the path to the data and .csv info files (Assumed Data folder and .py file are at same level)
@@ -109,7 +105,6 @@ class Slide_Process:
                     # Call to create output .csv file
                     if st.sidebar.button("Download Final Data"):
                         self.data_output_process_Final()
-    
 
     def import_file(self):
         # Import .tif file
@@ -325,8 +320,8 @@ class Slide_Process:
         # make output file from lists into a dataframe
         output_df = pd.DataFrame(self.output_data)
         output_df = output_df.T
-        # os.makedirs(self.output_folder + '/OutputFiles', exist_ok=True) 
-        output_df.to_csv(self.output_folder + '/OutputFiles/' + self.file[:-4] + '_TempOutputFile.csv') 
+        os.makedirs(self.dir_path + '/OutputFiles', exist_ok=True) 
+        output_df.to_csv(self.dir_path + '/OutputFiles/' + self.file[:-4] + '_TempOutputFile.csv') 
 
         
     def process_data(self):
@@ -398,8 +393,16 @@ class Slide_Process:
         st.write(self.dir_path)
         
     def data_output_process_Final(self):
-        self.output_df.to_csv(self.output_folder + '/OutputFiles/' 
-                              + self.file[:-4] + '_Processed.csv')  
+        st.download_button(
+            "Press to Download",
+            self.output_df.to_csv(index=False).encode('utf-8'),
+            str(self.file[:-4]) + '_Processed.csv',
+            "text/csv",
+            key='download-csv'
+        )
+        
+        # self.output_df.to_csv(self.dir_path + '/OutputFiles/' 
+        #                       + self.file[:-4] + '_Processed.csv')  
 
 # Script to run a Streamlit app that is able to process multiple slide images
 # Code splits image into 21 subarrays ("Wells") and find the intesities of all the points

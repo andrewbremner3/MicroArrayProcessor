@@ -68,8 +68,6 @@ class Slide_Process:
                                              value=25, min_value=10, max_value=100,step=1)
             
         # Promt user to use the app correctly
-        st.write("Once files are defined, click image processing button")
-        st.write("Once finished, click data processing button")
         st.subheader("Progress Bar")
         self.prog_bar = st.progress(0)
         

@@ -98,10 +98,10 @@ class Slide_Process:
                 st.sidebar.header("3) Click to run data process")
                 # Once buttom is clicked then the data processing begins
                     # Call to processing method
-                self.process_data()
-                self.prog_bar.progress(100)
-                # Call to create output .csv file
-                self.data_output_process_Final()
+                    self.process_data()
+                    self.prog_bar.progress(100)
+                    # Call to create output .csv file
+                    self.data_output_process_Final()
 
     def import_file(self):
         # Import .tif file

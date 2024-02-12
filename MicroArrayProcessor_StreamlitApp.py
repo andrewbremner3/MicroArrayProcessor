@@ -23,6 +23,7 @@ class Slide_Process:
         
         # Set the path to the data and .csv info files (Assumed Data folder and .py file are at same level)
         self.dir_path = os.getcwd()+'/Data'
+        self.output_df =[]
         
         # Check the images folder for .tif files to be processed
         file_options = [""] + [x for x in os.listdir(self.dir_path+"/RawImages") if ".tif" in x]
@@ -102,8 +103,8 @@ class Slide_Process:
                     self.process_data()
                     self.prog_bar.progress(100)
                     # Call to create output .csv file
-                if st.button("Download Final Data"):
-                    self.data_output_process_Final()
+                    if st.sidebar.button("Download Final Data"):
+                        self.data_output_process_Final()
 
     def import_file(self):
         # Import .tif file

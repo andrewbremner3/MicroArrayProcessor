@@ -17,7 +17,7 @@ class Slide_Process:
     def __init__(self):
         # initialize the Streamlit asthetics with titles and headers
         st.title("Slide Process Program")
-        st.markdown(':red[Please download the "Data" folder from: https://github.com/andrewbremner3/Micro_Array_Processor in order to run the application.]')
+        st.markdown(':red[For the raw data files please download the "Data" folder from: https://github.com/andrewbremner3/Micro_Array_Processor]')
         st.header("Use sidebar to pick files for processing")
         st.sidebar.header("1) Browse for files")
         

@@ -392,7 +392,7 @@ class Slide_Process:
         
     def data_output_process_Final(self):
         st.download_button(
-            "Press to Download",
+            "Click to Download Final Data",
             self.output_df.to_csv(index=False).encode('utf-8'),
             str(self.file[:-4]) + '_Processed.csv',
             "text/csv",

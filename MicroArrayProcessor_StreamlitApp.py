@@ -20,7 +20,7 @@ class Slide_Process:
         st.markdown(':red[For the raw data files please download the "Data" folder from: https://github.com/andrewbremner3/Micro_Array_Processor]')
         st.header("Use sidebar to pick files for processing")
         # add file browser for where the files go
-        self.output_folder = self.file_selector()
+        self.output_folder = st.text_input("Define path to output folder.")
         
         st.sidebar.header("1) Browse for files")
         
@@ -109,10 +109,6 @@ class Slide_Process:
                     if st.sidebar.button("Download Final Data"):
                         self.data_output_process_Final()
     
-    def file_selector(self, folder_path='.'):
-            filenames = os.listdir(folder_path)
-            selected_filename = st.selectbox('Select a folder', filenames)
-            return os.path.join(folder_path)
 
     def import_file(self):
         # Import .tif file
